@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+Thanks for signing up.
+
+You will only need to visit the link once to verify and activate your account.
+
+To complete your account verification, please click the link given below:-
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+If the above link does not work, please copy and paste link into your web browser.
+
+Thanks
+
+{% endautoescape %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br>
+  <div class="alert alert-success" role="alert">
+    <h2 style="text-align: center;">Login</h2>
+  </div>
+  {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        <strong>{{form.err_msg}}</strong>
+      </div>
+    </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <div class="card-footer text-center">
+    <div class="small">
+      <a href="{% url 'signup' %}">Don't have an account yet? Go to signup</a><br>
+    </div>
+  </div>
+{% endblock content%}
