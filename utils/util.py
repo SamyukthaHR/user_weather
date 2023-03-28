@@ -35,13 +35,14 @@ def send_activation_mail(request, user, form):
                 username=settings.EMAIL_HOST_USER,
                 password=settings.EMAIL_HOST_PASSWORD,
                 use_tls=settings.EMAIL_USE_TLS,
-                timeout=30,
+                timeout=120,
         ) as connection:
             email = EmailMessage(mail_subject, message, to=[to_email], connection=connection)
             print('email:', email)
             email.send()
     except Exception as e:
         print(f'Exception occurred due to: {e}')
+        raise e
 
 
 def get_curr_timestamp_utc():

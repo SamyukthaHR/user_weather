@@ -4,7 +4,7 @@ from account import views as account_views
 from django.contrib.auth import views as auth_views
 
 from account.forms import LoginForm
-from account.views import CustomLoginView, UserSignUpView
+from account.views import CustomLoginView, UserSignUpView, WeatherDetailsView
 
 urlpatterns = [
     path('signup', UserSignUpView.as_view(), name='signup'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(redirect_authenticated_user=True, template_name='login.html',
                                            authentication_form=LoginForm), name='login'),
     path('profile/', account_views.profile, name='profile'),
+    path('weather', WeatherDetailsView.as_view()),
 ]

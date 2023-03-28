@@ -17,6 +17,6 @@ class UserAPIToken(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
-    is_deleted = models.BooleanField()
+    is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=datetime.datetime.now())
     updated_at = models.DateTimeField(default=datetime.datetime.now())
