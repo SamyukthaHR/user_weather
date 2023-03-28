@@ -4,14 +4,12 @@ from account import views as account_views
 from django.contrib.auth import views as auth_views
 
 from account.forms import LoginForm
-from account.views import UserSignUpView, CustomLoginView
+from account.views import CustomLoginView, UserSignUpView
 
 urlpatterns = [
-    path('signup', account_views.signup, name='signup'),
-    # path('signup', UserSignUpView.as_view(), name='signup'),
+    path('signup', UserSignUpView.as_view(), name='signup'),
     path('activate/<uidb64>/<token>', account_views.activate, name='activate'),
     path('', account_views.home, name='home'),
-    # path('login', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('logout', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
     path('login/', CustomLoginView.as_view(redirect_authenticated_user=True, template_name='login.html',
                                            authentication_form=LoginForm), name='login'),

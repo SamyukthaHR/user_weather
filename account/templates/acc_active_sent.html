@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if error %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        <strong>{{err_msg}}</strong>
+      </div>
+    </div>
+{% endif %}
+<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12">
+  <h1 class="MuiTypography-root MuiTypography-h1">
+    Activation mail sent!!
+  </h1>
+  <div class="MuiBox-root jss3 jss1">
+    <p class="MuiTypography-root MuiTypography-body1">
+      Please confirm your email address to complete the registration.
+    </p>
+  </div>
+</div>
   <p>Please confirm your email address to complete the registration. </p>
 {% endblock %}

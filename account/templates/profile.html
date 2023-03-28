@@ -55,20 +55,32 @@
 .shadow-none {
     box-shadow: none!important;
 }
+a {
+            display: inline-block;
+            background: #313030;
+            color: #FFF;
+            border: 0;
+            border-radius: 4px;
+            text-align: center;
+            padding: 20px 30px;
+            line-height: 1;
+            text-decoration: none;
+        }
+        a:hover {
+          background: #c7c5c5;
+          color: #313030;
+        }
     </style>
 {% endblock style %}
 {% block content %}
-    <div class="container">
+<div class="container">
     <div class="main-body">
 
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
+      <div class="alert alert-success" role="alert">
+        <h2 style="text-align: center;">
+          User Profile
+        </h2>
+      </div>
           <!-- /Breadcrumb -->
 
           <div class="row gutters-sm">
@@ -108,12 +120,21 @@
                   </div>
                   <hr>
                     <div class="row">
+
                         <div class="col-sm-3">
-                      <h6 class="mb-0">Username</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{user.username}}
-                    </div>
+                          <h6 class="mb-0">Token</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {% if token %}
+                          {{token_value}}
+                          {% else %}
+                          <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                          <input type="submit" name="generate_token" value="Generate Token"/>
+                          </form>
+                          {% endif %}
+                        </div>
                     </div>
                 </div>
               </div>
@@ -124,7 +145,8 @@
 
             </div>
           </div>
-
-        </div>
+      <br>
+      <a class="a2" href="{% url 'logout' %} ">Logout</a>
     </div>
+</div>
 {% endblock content %}
